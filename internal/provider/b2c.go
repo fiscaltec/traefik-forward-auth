@@ -17,8 +17,6 @@ import (
 // B2C provider
 type B2C struct {
 	BaseURL      string `long:"base-url" env:"BASE_URL" description:"Base URL"`
-	TenantID     string `long:"tenant-id" env:"TENANT_ID" description:"Tenant ID"`
-	FlowName	 string `long:"flow-name" env:"FLOW_NAME" description:"Flow Name"`
 	ClientID     string `long:"client-id" env:"CLIENT_ID" description:"Client ID"`
 	ClientSecret string `long:"client-secret" env:"CLIENT_SECRET" description:"Client Secret" json:"-"`
 
@@ -39,7 +37,7 @@ func (o *B2C) Name() string {
 // Setup performs validation and setup
 func (o *B2C) Setup() error {
 	// Check parms
-	if o.BaseURL == ""|| o.ClientID == "" || o.ClientSecret == "" {
+	if o.BaseURL == "" || o.ClientID == "" || o.ClientSecret == "" {
 		return errors.New("providers.b2c.base-url, providers.b2c.client-id, providers.b2c.client-secret must be set")
 	}
 
@@ -51,7 +49,7 @@ func (o *B2C) Setup() error {
 		return err
 	}
 	endpoint := oauth2.Endpoint{
-		AuthURL: urls.AuthURL, 
+		AuthURL:  urls.AuthURL,
 		TokenURL: urls.TokenURL,
 	}
 
