@@ -12,6 +12,7 @@ type Providers struct {
 	Google       Google       `group:"Google Provider" namespace:"google" env-namespace:"GOOGLE"`
 	OIDC         OIDC         `group:"OIDC Provider" namespace:"oidc" env-namespace:"OIDC"`
 	GenericOAuth GenericOAuth `group:"Generic OAuth2 Provider" namespace:"generic-oauth" env-namespace:"GENERIC_OAUTH"`
+	B2C          B2C          `group:"B2C Provider" namespace:"b2c" env-namespace:"B2C"`
 }
 
 // Provider is used to authenticate users
