@@ -115,7 +115,7 @@ func (o *B2C) GetUser(token string) (User, error) {
 
 	// for B2C email is returned in emails array
 	if len(b2cUser.Emails) > 0 {
-		user.Email = strings.ToLower(b2cUser.Emails[0])
+		user.Email = b2cUser.Emails[0]
 	}
 
 	return user, nil

@@ -99,7 +99,17 @@ func ValidateEmail(email, ruleName string) bool {
 
 // ValidateWhitelist checks if the email is in whitelist
 func ValidateWhitelist(email string, whitelist CommaSeparatedList) bool {
+	caseInsensitive := config.CaseInsensitive
+
+	if caseInsensitive {
+		email = strings.ToLower(email)
+	}
+
 	for _, whitelist := range whitelist {
+		if caseInsensitive {
+			whitelist = strings.ToLower(whitelist)
+		}
+
 		if email == whitelist {
 			return true
 		}
@@ -109,11 +119,21 @@ func ValidateWhitelist(email string, whitelist CommaSeparatedList) bool {
 
 // ValidateDomains checks if the email matches a whitelisted domain
 func ValidateDomains(email string, domains CommaSeparatedList) bool {
+	caseInsensitive := config.CaseInsensitive
+
+	if caseInsensitive {
+		email = strings.ToLower(email)
+	}
+
 	parts := strings.Split(email, "@")
 	if len(parts) < 2 {
 		return false
 	}
 	for _, domain := range domains {
+		if caseInsensitive {
+			domain = strings.ToLower(domain)
+		}
+
 		if domain == parts[1] {
 			return true
 		}
